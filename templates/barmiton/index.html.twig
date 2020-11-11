@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue chez {{ controller_name }} !{% endblock %}
+
+{% block body %}
+    
+<div class="row mt-5 justify-content-center">
+    
+    {% for recette in recettes %}
+
+    <div class="card col-5 mx-2 my-2">
+        <img class="card-img-top" src="http://placehold.it/100x50" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">{{ recette.title }}</h2>
+          <div class="metadata">Créée le {{ recette.createdAt|date("m/d/Y à H:i", "Europe/Paris") }}</div>
+          <div class="metadata"><strong>Temps:</strong> {{ recette.time }}</div>
+          <div class="metadata mb-2"><strong>Personnes:</strong> {{ recette.person }}</div>
+          <p class="card-text">{{ recette.abstract|raw }}</p>
+          <a href="{{ path('recette_show', {'id': recette.id}) }}" class="btn btn-primary">Lire la suite...</a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+

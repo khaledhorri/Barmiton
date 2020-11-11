@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Administration {% endblock %}
+
+{% block body %}
+    
+{% if is_granted('ROLE_ADMIN') %}
+<div>
+    <h1>Gestion des recettes</h1>
+
+    <a href="{{ path("recette_create") }}" class="btn btn-success mb-3">Ajouter</a>
+
+    <table class="table table-striped">
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Titre</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for recette in recettes %}
+        <tr>
+          <td>{{ recette.id }}</td>
+          <td>{{ recette.title }}</td>
+          <td>
+            <a href="{{ path('recette_edit', {'id': recette.id}) }}" class="btn btn-success">Editer</a>
+            <a href="{{ path('recette_delete', {'id': recette.id}) }}" class="btn btn-danger">supprimer</a>
+            
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+</div>
+{% else %}
+<div class="alert-danger">Accès non autorisé à cette page</div>
+{% endif %}
+
+{% endblock %}
+
+
