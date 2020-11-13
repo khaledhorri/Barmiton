@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Recette;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecetteType extends AbstractType
@@ -17,6 +19,11 @@ class RecetteType extends AbstractType
             ->add('preparation')
             ->add('time')
             ->add('person')
+            ->add('image')
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name'
+            ])
             // ->add('createdAt')
         ;
     }

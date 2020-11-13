@@ -10,10 +10,13 @@
     {{ form_start(formRecetteEdit) }}
 
     {{ form_row(formRecetteEdit.title, {'attr': {'placeholder': "Titre de la recette"}, 'label': 'Titre' }) }}
+    {{ form_row(formRecetteEdit.category, {'attr': {'placeholder': "Catégorie"}, 'label': 'Catégorie' }) }}
+    {{ form_row(formRecetteEdit.image, {'attr': {'placeholder': "Url image"}, 'label': 'Image' }) }}
     {{ form_row(formRecetteEdit.time, {'attr': {'placeholder': "Temps de la préparation"}, "label": "Temps"}) }}
     {{ form_row(formRecetteEdit.person, {'attr': {'placeholder': "Nombre de personnes"}, "label": "Personne"}) }}
     {{ form_row(formRecetteEdit.abstract, {'attr': {'placeholder': "Résumé de la recette"}, "label": "Résumé"}) }}
     {{ form_row(formRecetteEdit.preparation, {'attr': {'placeholder': "Contenu de la préparation"}, "label": "Préparation"}) }}
+    
 
     <a href="{{ path("admin_recette") }}" class="btn btn-secondary">Annuler</a>
 

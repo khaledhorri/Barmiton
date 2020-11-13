@@ -26,7 +26,7 @@ class BarmitonController extends AbstractController
     {
         
         $recettes = $repoRecette->findAll();
-
+        
         // for ($i=1; $i <= 10; $i++) { 
         // $recette = new Recette();
         // $recette->setTitle("Titre de la recette n°$i")
