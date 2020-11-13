@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Recette;
+use App\Form\RecetteType;
+use App\Form\UserRecetteType;
 use App\Repository\RecetteRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,27 +26,36 @@ class BarmitonController extends AbstractController
     /**
      * @Route("/barmiton", name="barmiton")
      */
-    public function index(RecetteRepository $repoRecette/* EntityManagerInterface $manager */): Response
+    public function index(RecetteRepository $repoRecette, Request $request, EntityManagerInterface $manager): Response
     {
         
         $recettes = $repoRecette->findAll();
         
-        // for ($i=1; $i <= 10; $i++) { 
-        // $recette = new Recette();
-        // $recette->setTitle("Titre de la recette n°$i")
-        //         ->setAbstract("Pizza à base d'ingrédients bio")
-        //         ->setPreparation("Patte fine, sauce tomate, 4 fromages, olives, viande hachée.....")
-        //         ->setTime("25 min")
-        //         ->setPerson(2)
-        //         ->setCreatedAt(new \DateTime());
-        // $manager->persist($recette);
-        // }
+        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $username = $this->getUser();
         
-        // $manager->flush();
+        $recetteUser = new Recette();
+        
+        $form = $this->createForm(UserRecetteType::class, $recetteUser);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $recetteUser->setCreatedAt(new \DateTime());
+            $recetteUser->setUsername($username);
+            $manager->persist($recetteUser);
+            $manager->flush();
+
+            return $this->redirectToRoute('barmiton');
+
+        }
 
         return $this->render('barmiton/index.html.twig', [
             'controller_name' => 'Barmiton',
-            'recettes' => $recettes
+            'recettes' => $recettes,
+            'formRecetteAdd' => $form->createView()
         ]);
     }
 

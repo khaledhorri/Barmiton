@@ -6,7 +6,7 @@
     <img class="card-img-top" src="{{ recette.image }}" alt="Card image cap">
     <div class="card-body">
       <h2 class="card-title">{{ recette.title }}</h2>
-      <div class="metadata mb-2">Créée le {{ recette.createdAt|date("m/d/Y à H:i", "Europe/Paris") }}</div>
+      <div class="metadata mb-2">Créée le {{ recette.createdAt|date("m/d/Y à H:i", "Europe/Paris") }} par {{ recette.username.username }}</div>
       <div class="metadata"><strong>Catégorie:</strong> {{ recette.category.name }}</div>
       <div class="metadata"><strong>Temps:</strong> {{ recette.time }}</div>
       <div class="metadata mb-2"><strong>Personnes:</strong> {{ recette.person }}</div>

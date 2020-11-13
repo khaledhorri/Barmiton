@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\RecetteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RecetteRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=RecetteRepository::class)
+ * @UniqueEntity("title", message="Ce titre de recette existe déjà")
  */
 class Recette
 {
@@ -73,6 +75,12 @@ class Recette
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recettes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $username;
 
     public function getId(): ?int
     {
@@ -171,6 +179,18 @@ class Recette
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getUsername(): ?User
+    {
+        return $this->username;
+    }
+
+    public function setUsername(?User $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
