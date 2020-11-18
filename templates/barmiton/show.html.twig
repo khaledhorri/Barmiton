@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="card mt-5">
-    <img class="card-img-top" src="{{ recette.image }}" alt="Card image cap">
+  <img class="card-img-top" src="{{ vich_uploader_asset(recette, 'imageFile') }}" alt="{{ recette.imageName }}">
     <div class="card-body">
       <h2 class="card-title">{{ recette.title }}</h2>
       <div class="metadata mb-2">Créée le {{ recette.createdAt|date("m/d/Y à H:i", "Europe/Paris") }} par {{ recette.username.username }}</div>

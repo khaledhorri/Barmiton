@@ -29,6 +29,7 @@ class BarmitonController extends AbstractController
     public function index(RecetteRepository $repoRecette, Request $request, EntityManagerInterface $manager): Response
     {
         
+
         $recettes = $repoRecette->findAll();
         
         // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');

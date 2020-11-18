@@ -38,6 +38,7 @@ class AdminRecetteController extends AbstractController
             $recette = new Recette();
         }
         
+        $username = $this->getUser();
     
         $form = $this->createForm(RecetteType::class, $recette);
 
@@ -46,6 +47,7 @@ class AdminRecetteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $recette->setCreatedAt(new \DateTime());
+            $recette->setUsername($username);
             $manager->persist($recette);
             $manager->flush();
 
@@ -68,13 +70,16 @@ class AdminRecetteController extends AbstractController
             $recette = new Recette();
         }
         
+
+        $username = $this->getUser();
     
         $form = $this->createForm(RecetteType::class, $recette);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $recette->setCreatedAt(new \DateTime());
+            $recette->setUsername($username);
             $manager->persist($recette);
             $manager->flush();
 
@@ -84,7 +89,6 @@ class AdminRecetteController extends AbstractController
         return $this->render('/admin/edit.html.twig', [
             'formRecetteEdit' => $form->createView(),
         ]);
-
 
     }
 
