@@ -3,27 +3,29 @@
 {% block title %}Bienvenue chez {{ controller_name }} !{% endblock %}
 
 {% block body %}
-    
+
 <div class="row mt-5 justify-content-center">
-    
+
     {% for recette in recettes %}
 
     <div class="card col-5 mx-2 my-2">
         {% if recette.imageName %}
-        <img class="card-img-top img-fluid" src="{{ vich_uploader_asset(recette, 'imageFile') }}" alt="{{ recette.imageName }}">
+        <img class="card-img-top img-fluid" src="{{ vich_uploader_asset(recette, 'imageFile') }}"
+            alt="{{ recette.imageName }}">
         {% else %}
         <img class="card-img-top img-fluid" src="{{ recette.image }}" alt="{{ recette.image }}">
         {% endif %}
-        
-        
+
+
         <div class="card-body">
-          <h2 class="card-title">{{ recette.title }}</h2>
-          <div class="metadata mb-2">Créée le {{ recette.createdAt|date("m/d/Y à H:i", "Europe/Paris") }} par {{ recette.username.username }}</div>
-          <div class="metadata"><strong>Catégorie:</strong> {{ recette.category.name }}</div>
-          <div class="metadata"><strong>Temps:</strong> {{ recette.time }}</div>
-          <div class="metadata mb-2"><strong>Personnes:</strong> {{ recette.person }}</div>
-          <p class="card-text">{{ recette.abstract|raw }}</p>
-          <a href="{{ path('recette_show', {'id': recette.id}) }}" class="btn btn-primary">Lire la suite...</a>
+            <h2 class="card-title">{{ recette.title }}</h2>
+            <div class="metadata mb-2">Créée le {{ recette.createdAt|date("m/d/Y à H:i", "Europe/Paris") }} par
+                {{ recette.username.username }}</div>
+            <div class="metadata"><strong>Catégorie:</strong> {{ recette.category.name }}</div>
+            <div class="metadata"><strong>Temps:</strong> {{ recette.time }}</div>
+            <div class="metadata mb-2"><strong>Personnes:</strong> {{ recette.person }}</div>
+            <p class="card-text">{{ recette.abstract|raw }}</p>
+            <a href="{{ path('recette_show', {'id': recette.id}) }}" class="btn btn-primary">Lire la suite...</a>
         </div>
     </div>
 
@@ -37,23 +39,21 @@
 
 {{ form_start(formRecetteAdd) }}
 
-    {{ form_row(formRecetteAdd.title, {'attr': {'placeholder': "Titre de la recette"}, 'label': 'Titre' }) }}
-    {{ form_row(formRecetteAdd.category, {'attr': {'placeholder': "Catégorie"}, 'label': 'Catégorie' }) }}
-    {{ form_row(formRecetteAdd.imageFile, {'attr': {'placeholder': "Fichier de l'image", 'required': false}, 'label': 'Image de la recette' }) }}
-    {{ form_row(formRecetteAdd.time, {'attr': {'placeholder': "Temps de la préparation"}, "label": "Temps"}) }}
-    {{ form_row(formRecetteAdd.person, {'attr': {'placeholder': "Nombre de personnes"}, "label": "Personne"}) }}
-    {{ form_row(formRecetteAdd.abstract, {'attr': {'placeholder': "Résumé de la recette"}, "label": "Résumé"}) }}
-    {{ form_row(formRecetteAdd.preparation, {'attr': {'placeholder': "Contenu de la préparation"}, "label": "Préparation"}) }}
-    
+{{ form_row(formRecetteAdd.title, {'attr': {'placeholder': "Titre de la recette"}, 'label': 'Titre' }) }}
+{{ form_row(formRecetteAdd.category, {'attr': {'placeholder': "Catégorie"}, 'label': 'Catégorie' }) }}
+{{ form_row(formRecetteAdd.imageFile, {'attr': {'placeholder': "Fichier de l'image", 'required': false}, 'label': 'Image de la recette' }) }}
+{{ form_row(formRecetteAdd.time, {'attr': {'placeholder': "Temps de la préparation"}, "label": "Temps"}) }}
+{{ form_row(formRecetteAdd.person, {'attr': {'placeholder': "Nombre de personnes"}, "label": "Personne"}) }}
+{{ form_row(formRecetteAdd.abstract, {'attr': {'placeholder': "Résumé de la recette"}, "label": "Résumé"}) }}
+{{ form_row(formRecetteAdd.preparation, {'attr': {'placeholder': "Contenu de la préparation"}, "label": "Préparation"}) }}
 
-    <a href="" class="btn btn-secondary">Annuler</a>
 
-    <button type="submit" class="btn btn-success">Envoyer</button>
+<a href="" class="btn btn-secondary">Annuler</a>
+
+<button type="submit" class="btn btn-success">Envoyer</button>
 
 {{ form_end(formRecetteAdd) }}
 
 {% endif %}
 
 {% endblock %}
-
-

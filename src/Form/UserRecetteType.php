@@ -26,8 +26,7 @@ class UserRecetteType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name'
             ])
-            ->add('imageFile', FileType::class)
-        ;
+            ->add('imageFile', FileType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -7,23 +7,23 @@
 {% if is_granted('ROLE_ADMIN') %}
 <h1>Ajouter une recette</h1>
 
-    {{ form_start(formRecette) }}
+{{ form_start(formRecette) }}
 
-    {{ form_row(formRecette.title, {'attr': {'placeholder': "Titre de la recette"}, 'label': 'Titre' }) }}
-    {{ form_row(formRecette.category, {'attr': {'placeholder': "Catégorie"}, 'label': 'Catégorie' }) }}
-    {{ form_row(formRecette.imageFile, {'attr': {'placeholder': "Fichier de l'image", 'required': false}, 'label': 'Image de la recette' }) }}
-    {{ form_row(formRecette.time, {'attr': {'placeholder': "Temps de la préparation"}, "label": "Temps"}) }}
-    {{ form_row(formRecette.person, {'attr': {'placeholder': "Nombre de personnes"}, "label": "Personne"}) }}
-    {{ form_row(formRecette.abstract, {'attr': {'placeholder': "Résumé de la recette"}, "label": "Résumé"}) }}
-    {{ form_row(formRecette.preparation, {'attr': {'placeholder': "Contenu de la préparation"}, "label": "Préparation"}) }}
+{{ form_row(formRecette.title, {'attr': {'placeholder': "Titre de la recette"}, 'label': 'Titre' }) }}
+{{ form_row(formRecette.category, {'attr': {'placeholder': "Catégorie"}, 'label': 'Catégorie' }) }}
+{{ form_row(formRecette.imageFile, {'attr': {'placeholder': "Fichier de l'image", 'required': false}, 'label': 'Image de la recette' }) }}
+{{ form_row(formRecette.time, {'attr': {'placeholder': "Temps de la préparation"}, "label": "Temps"}) }}
+{{ form_row(formRecette.person, {'attr': {'placeholder': "Nombre de personnes"}, "label": "Personne"}) }}
+{{ form_row(formRecette.abstract, {'attr': {'placeholder': "Résumé de la recette"}, "label": "Résumé"}) }}
+{{ form_row(formRecette.preparation, {'attr': {'placeholder': "Contenu de la préparation"}, "label": "Préparation"}) }}
 
-    <a href="{{ path("admin_recette") }}" class="btn btn-secondary">Annuler</a>
-    <button type="submit" class="btn btn-success">Ajouter</button>
+<a href="{{ path("admin_recette") }}" class="btn btn-secondary">Annuler</a>
+<button type="submit" class="btn btn-success">Ajouter</button>
 
-    {{ form_end(formRecette) }}
-    
-    {% else %}
-    <div class="alert-danger">Accès non autorisé à cette page</div>
-    {% endif %}
+{{ form_end(formRecette) }}
+
+{% else %}
+<div class="alert-danger">Accès non autorisé à cette page</div>
+{% endif %}
 
 {% endblock %}
