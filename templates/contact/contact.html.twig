@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous-contacter - Barmiton{% endblock %}
+
+{% block body %}
+
+<h1>Formulaire de contact</h1>
+
+{{ form_start(contactForm) }}
+
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(contactForm.lastname, {'label': 'Nom', 'attr': {'placeholder': 'Votre nom'}}) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(contactForm.firstname, {'label': 'Prénom', 'attr': {'placeholder': 'Votre prénom'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(contactForm.phone, {'label': 'Téléphone', 'attr': {'placeholder': 'Votre téléphone'}}) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(contactForm.email, {'label': 'Email', 'attr': {'placeholder': 'Votre adresse email'}}) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(contactForm.message, {'label': 'message', 'attr': {'placeholder': 'Votre message'}}) }}
+    </div>
+</div>
+
+<button class="btn btn-primary">Envoyer</button>
+{{ form_end(contactForm) }}
+
+
+
+{% endblock %}

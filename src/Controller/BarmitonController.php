@@ -19,7 +19,8 @@ class BarmitonController extends AbstractController
     /**
      * @Route("/", name = "home")
      */
-    public function home(){
+    public function home()
+    {
         return $this->render('barmiton/home.html.twig');
     }
 
@@ -28,16 +29,16 @@ class BarmitonController extends AbstractController
      */
     public function index(RecetteRepository $repoRecette, Request $request, EntityManagerInterface $manager): Response
     {
-        
+
 
         $recettes = $repoRecette->findAll();
-        
+
         // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $username = $this->getUser();
-        
+
         $recetteUser = new Recette();
-        
+
         $form = $this->createForm(UserRecetteType::class, $recetteUser);
 
         $form->handleRequest($request);
@@ -50,7 +51,6 @@ class BarmitonController extends AbstractController
             $manager->flush();
 
             return $this->redirectToRoute('barmiton');
-
         }
 
         return $this->render('barmiton/index.html.twig', [
@@ -63,12 +63,11 @@ class BarmitonController extends AbstractController
     /**
      * @Route("/barmiton/{id}", name="recette_show")
      */
-    public function show(Recette $recette) {
+    public function show(Recette $recette)
+    {
 
         return $this->render('barmiton/show.html.twig', [
             'recette' => $recette
         ]);
-
     }
-
 }

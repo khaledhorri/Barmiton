@@ -4,4 +4,12 @@
 
 <h1> Bienvenue chez Barmiton !!</h1>
 
+{% for message in app.flashes('success') %}
+
+<div class="alert alert-success">
+    {{ message }}
+</div>
+
+{% endfor %}
+
 {% endblock %}

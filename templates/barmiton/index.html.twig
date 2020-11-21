@@ -33,7 +33,7 @@
 
 </div>
 
-{% if app.user %}
+{% if is_granted('ROLE_USER', app.user) %}
 
 <h1>Proposez une recette</h1>
 
